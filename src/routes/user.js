@@ -5,7 +5,7 @@ const User = require('../models/user');
 
 const userRouter = express.Router();
 
-const DATA = "_id firstname lastname photoUrl gender about age skills";
+const DATA = "_id firstname lastname photoUrl gender about age interests"; // Fields to be selected
 //Get all pending requests 
 userRouter.get("/user/requests/received", authMiddleware, async (req, res) => {
     try {
@@ -56,7 +56,7 @@ userRouter.get("/user/connections"  ,authMiddleware, async (req, res) => {
                 : connection.fromUserId;
 
             // Only include the specified fields
-            const { _id, firstname, lastname, photoUrl, gender, about, age, skills } = connectedUser;
+            const { _id, firstname, lastname, photoUrl, gender, about, age, interests } = connectedUser;
             return {
                 connectionId: connection._id,
                 user: {
@@ -67,7 +67,7 @@ userRouter.get("/user/connections"  ,authMiddleware, async (req, res) => {
                     gender,
                     about,
                     age,
-                    skills
+                    interests
                 },
                 status: connection.status,
             };

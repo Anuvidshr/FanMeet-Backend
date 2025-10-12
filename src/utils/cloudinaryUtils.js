@@ -7,7 +7,7 @@ const streamifier = require('streamifier');
  * @param {string} folder - Cloudinary folder name (optional)
  * @returns {Promise<string>} - Cloudinary URL
  */
-const uploadToCloudinary = (buffer, folder = 'DevMeet-Backend/profiles') => {
+const uploadToCloudinary = (buffer, folder = 'FanMeet-Backend/profiles') => {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
       {
@@ -59,7 +59,7 @@ const extractPublicId = (url) => {
   const publicId = filename.split('.')[0];
   
   // Include folder path if exists
-  const folderIndex = parts.indexOf('DevMeet-Backend');
+  const folderIndex = parts.indexOf('FanMeet-Backend');
   if (folderIndex !== -1) {
     const folderPath = parts.slice(folderIndex, -1).join('/');
     return `${folderPath}/${publicId}`;

@@ -29,7 +29,7 @@ app.use(cookieParser()); // Use cookie-parser middleware
 app.get('/health', (req, res) => {
   res.status(200).json({ 
     status: 'OK', 
-    message: 'DevMeet Backend is running',
+    message: 'FanMeet Backend is running',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development'
   });
@@ -38,7 +38,7 @@ app.get('/health', (req, res) => {
 // Root endpoint
 app.get('/', (req, res) => {
   res.status(200).json({ 
-    message: 'DevMeet API Server',
+    message: 'FanMeet API Server',
     version: '1.0.0',
     status: 'Running'
   });

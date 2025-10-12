@@ -41,7 +41,7 @@ authRouter.post("/signup", async (req, res) => {
       age,
       gender,
       about,
-      skills,
+      interests,
       photoUrl
     } = req.body;
 
@@ -62,7 +62,7 @@ authRouter.post("/signup", async (req, res) => {
       age,
       gender,
       about,
-      skills,
+      interests,
       photoUrl
     });
 

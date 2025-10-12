@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema(
     about: {
       type: String
     },
-    skills: {
+    interests: {
       type: [String]
     },
     photoUrl: {

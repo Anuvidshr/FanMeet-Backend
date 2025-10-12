@@ -28,7 +28,7 @@ proRouter.patch("/profile/edit", authMiddleware, async (req, res) => {
     validprofiledata(req); // Validate profile data
 
     const loggedInUser = req.user;
-    const { firstname, lastname, email, age, gender, about, skills, photoUrl } = req.body;
+    const { firstname, lastname, email, age, gender, about, interests, photoUrl } = req.body;
 
     // Update only the fields that are provided
     if (firstname !== undefined) loggedInUser.firstname = firstname;
@@ -37,7 +37,7 @@ proRouter.patch("/profile/edit", authMiddleware, async (req, res) => {
     if (age !== undefined) loggedInUser.age = age;
     if (gender !== undefined) loggedInUser.gender = gender;
     if (about !== undefined) loggedInUser.about = about;
-    if (skills !== undefined) loggedInUser.skills = skills;
+    if (interests !== undefined) loggedInUser.interests = interests;
     if (photoUrl !== undefined) loggedInUser.photoUrl = photoUrl;
 
     console.log("User before save:", loggedInUser);
