@@ -3,6 +3,7 @@ const { authMiddleware } = require('../middlewares/auth');
 const { validprofiledata } = require('../models/utils/validators');
 const upload = require('../../config/multer');
 const { uploadToCloudinary, deleteFromCloudinary, extractPublicId } = require('../utils/cloudinaryUtils');
+const User = require('../models/user'); // Add this import
 const proRouter = express.Router();
 const bcrypt = require('bcrypt'); // Import bcrypt
 
@@ -135,5 +136,33 @@ proRouter.patch("/profile/password", authMiddleware, async (req, res) => {
   }
 });
   
-
+// Delete user account
+proRouter.delete('/profile/delete', authMiddleware, async (req, res) => {
+    try {
+        const userId = req.user._id;
+        
+        // Delete user from database
+        await User.findByIdAndDelete(userId);
+        
+        // Clear cookie
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+        });
+        
+        res.json({
+            success: true,
+            message: 'Account deleted successfully'
+        });
+    } catch (error) {
+        console.error('Delete account error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to delete account',
+            error: error.message
+        });
+    }
+});
+  
 module.exports = proRouter;
